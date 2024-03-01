@@ -5,7 +5,7 @@ import { MdSunny } from "react-icons/md";
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [isDarkTheme, setIsDarkTheme] = useState();
+  const [isDarkTheme, setIsDarkTheme] = useState(true);
 
   const toggleNavbar = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -22,8 +22,8 @@ const Navbar = () => {
   ];
 
   return (
-    <>
-      <nav className="bg-sky-700 fixed w-full z-20 top-0 left-0 px-2 dark:bg-sky-950 dark:text-white">
+    <div className="fixed w-full z-20 top-0 left-0 px-2 bg-sky-700 dark:bg-sky-900 dark:text-white">
+      <nav>
         <div className="flex flex-wrap items-center justify-between p-1 uppercase">
           <Link to="/" className="items-center">
             <span className="text-2xl font-semibold">Hello World</span>
@@ -39,7 +39,7 @@ const Navbar = () => {
                   {link.title}
                 </Link>
               ))}
-              <div className="group flex cursor-pointer hover:text-sky-400 pr-2">
+              <div className="group flex cursor-pointer pr-2">
                 <span>Dropdown</span>
                 <svg
                   className="fill-current h-6 w-6 transform group-hover:-rotate-180 transition duration-150 ease-in-out"
@@ -54,7 +54,7 @@ const Navbar = () => {
                 >
                   <Link
                     to="dropdown"
-                    className="border-sm rounded bg-sky-700 dark:bg-sky-950 dark:text-white hover:text-sky-400 py-2 px-1"
+                    className="border-sm rounded bg-sky-700 dark:bg-sky-900 hover:text-sky-400 py-2 px-1"
                   >
                     Second level
                   </Link>
@@ -103,15 +103,17 @@ const Navbar = () => {
               )}
             </button>
           </div>
-          <div>
-            <FaMoon />
-            {/* <MdSunny /> */}
+          <div
+            className="cursor-pointer"
+            onClick={() => setIsDarkTheme(!isDarkTheme)}
+          >
+            {isDarkTheme ? <FaMoon /> : <MdSunny />}
           </div>
         </div>
       </nav>
       {isMenuOpen && (
         <div
-          className="md:hidden h-screen pt-14 text-center bg-sky-700 dark:bg-sky-950 dark:text-white"
+          className="md:hidden h-screen text-centery overflow-y-auto"
           id="mobile-menu"
         >
           {navLinks.map((link) => (
@@ -133,17 +135,14 @@ const Navbar = () => {
               <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" />
             </svg>
             <div className="transform scale-0 group-hover:scale-100 absolute pt-7 transition duration-150 ease-in-out">
-              <Link
-                to="dropdown"
-                className="w-full bg-sky-700 dark:bg-sky-950 hover:text-white"
-              >
+              <Link to="dropdown" className="w-full hover:text-white">
                 Second level
               </Link>
             </div>
           </div>
         </div>
       )}
-    </>
+    </div>
   );
 };
 

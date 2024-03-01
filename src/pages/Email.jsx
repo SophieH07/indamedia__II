@@ -15,7 +15,7 @@ const Email = () => {
       if (xhr.readyState === 4 && xhr.status === 200) {
         const jsonData = JSON.parse(xhr.responseText);
         SetData(jsonData.data);
-        console.log(xhr.responseText);
+        // console.log(xhr.responseText);
       }
     };
 
@@ -36,7 +36,7 @@ const Email = () => {
             {data.map((person) => (
               <li
                 key={person.id}
-                className="block m-3 p-6 bg-sky-300 rounded-lg dark:text-white dark:bg-gray-800 dark:border-gray-700"
+                className="block m-3 p-6 bg-sky-300 rounded-lg dark:bg-sky-800"
               >
                 <p>First Name: {person.first_name}</p>
                 <p>Last Name: {person.last_name}</p>

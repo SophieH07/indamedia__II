@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import "./Contract.css";
 
 const Contract = () => {
   const [isAccepted, setIsAccepted] = useState(false);
@@ -24,11 +23,15 @@ const Contract = () => {
         <p>If you want to know more about the contract, click on "Részletek"</p>
       </div>
       <div>
-        <button onClick={getAccepted}>OK</button>
-        <button>
+        <button className=" py-2 px-3 m-4" onClick={getAccepted}>
+          OK
+        </button>
+        <button className=" py-2 px-3 m-4">
           <Link to="/">Mégse</Link>
         </button>
-        <button onClick={getDetails}>Részletek</button>
+        <button className=" py-2 px-3 m-4" onClick={getDetails}>
+          Részletek
+        </button>
       </div>
       {showDetails ? (
         <div>

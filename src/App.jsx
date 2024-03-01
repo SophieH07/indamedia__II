@@ -13,7 +13,7 @@ function App() {
   return (
     <>
       <Navbar />
-      <div className="pt-12">
+      <div className="pt-12 dark:bg-sky-950 dark:text-white min-h-screen h-full">
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="about" element={<About />} />
