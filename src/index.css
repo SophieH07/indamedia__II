@@ -8,5 +8,5 @@ p {
 }
 
 button {
-    @apply bg-sky-300  dark:bg-sky-900 rounded-md hover:bg-sky-100 dark:hover:bg-sky-700
+    @apply bg-sky-300  dark:bg-sky-900 rounded-md hover:bg-sky-200 dark:hover:bg-sky-700
 }

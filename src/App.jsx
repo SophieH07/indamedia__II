@@ -1,3 +1,4 @@
+import { useState, useEffect } from "react";
 import Navbar from "./layout/Navbar";
 import { Route, Routes } from "react-router-dom";
 import About from "./pages/About";
@@ -10,9 +11,25 @@ import Dropdown from "./pages/Dropdown";
 import Email from "./pages/Email";
 
 function App() {
+  const [darkMode, setDarkMode] = useState(null);
+
+  useEffect(() => {
+    const savedMode = localStorage.getItem("darkMode");
+    if (savedMode !== null) {
+      setDarkMode(savedMode === "true");
+    } else {
+      setDarkMode(window.matchMedia("(prefers-color-scheme: dark)").matches);
+    }
+  }, []);
+
+  const toggleDarkMode = () => {
+    setDarkMode(!darkMode);
+    localStorage.setItem("darkMode", !darkMode);
+  };
+
   return (
-    <>
-      <Navbar />
+    <div className={darkMode ? "dark" : ""}>
+      <Navbar darkMode={darkMode} toggleDarkMode={toggleDarkMode} />
       <div className="pt-12 dark:bg-sky-950 dark:text-white min-h-screen h-full">
         <Routes>
           <Route path="/" element={<Home />} />
@@ -25,7 +42,7 @@ function App() {
           <Route path="email" element={<Email />} />
         </Routes>
       </div>
-    </>
+    </div>
   );
 }
 

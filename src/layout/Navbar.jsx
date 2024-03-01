@@ -3,9 +3,8 @@ import { Link } from "react-router-dom";
 import { FaMoon } from "react-icons/fa";
 import { MdSunny } from "react-icons/md";
 
-const Navbar = () => {
+const Navbar = ({ darkMode, toggleDarkMode }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [isDarkTheme, setIsDarkTheme] = useState(true);
 
   const toggleNavbar = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -22,7 +21,7 @@ const Navbar = () => {
   ];
 
   return (
-    <div className="fixed w-full z-20 top-0 left-0 px-2 bg-sky-700 dark:bg-sky-900 dark:text-white">
+    <div className="fixed w-full z-20 top-0 left-0 px-2 bg-sky-200 dark:bg-sky-900 dark:text-white">
       <nav>
         <div className="flex flex-wrap items-center justify-between p-1 uppercase">
           <Link to="/" className="items-center">
@@ -54,7 +53,7 @@ const Navbar = () => {
                 >
                   <Link
                     to="dropdown"
-                    className="border-sm rounded bg-sky-700 dark:bg-sky-900 hover:text-sky-400 py-2 px-1"
+                    className="border-sm rounded bg-sky-200 dark:bg-sky-900 hover:text-sky-400 py-2 px-1"
                   >
                     Second level
                   </Link>
@@ -66,7 +65,7 @@ const Navbar = () => {
             <button
               onClick={toggleNavbar}
               type="button"
-              className="bg-gray-200 inline-flex items-center justify-center p-1 rounded-md text-gray-800 hover:text-gray-400 hover:bg-gray-700 focus:outline-none dark:bg-gray-800 dark:text-gray-400 dark:hover:text-gray-200"
+              className="bg-gray-200 inline-flex items-center justify-center p-1 rounded-md text-gray-800 hover:text-gray-400 hover:bg-gray-200 dark:hover:bg-gray-700 focus:outline-none dark:bg-gray-800 dark:text-gray-400 dark:hover:text-gray-200"
               aria-controls="mobile-menu"
               aria-expanded="false"
             >
@@ -103,11 +102,8 @@ const Navbar = () => {
               )}
             </button>
           </div>
-          <div
-            className="cursor-pointer"
-            onClick={() => setIsDarkTheme(!isDarkTheme)}
-          >
-            {isDarkTheme ? <FaMoon /> : <MdSunny />}
+          <div className="cursor-pointer" onClick={toggleDarkMode}>
+            {darkMode ? <FaMoon /> : <MdSunny />}
           </div>
         </div>
       </nav>
@@ -120,12 +116,12 @@ const Navbar = () => {
             <a
               key={link.id}
               href={link.url}
-              className="text-gray-300 hover:text-white block px-3 py-2 text-base font-medium"
+              className="dark:text-gray-300 hover:text-white block px-3 py-2 text-base font-medium"
             >
               {link.title}
             </a>
           ))}
-          <div className="group inline-flex cursor-pointer text-gray-300 px-3 py-2 text-base font-medium">
+          <div className="group inline-flex cursor-pointer dark:text-gray-300 px-3 py-2 text-base font-medium">
             <span>Dropdown</span>
             <svg
               className="fill-current h-6 w-6 transform group-hover:-rotate-180 transition duration-150 ease-in-out"
